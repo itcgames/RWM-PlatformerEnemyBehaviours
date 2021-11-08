@@ -16,6 +16,8 @@ public class GroundWanderer : MonoBehaviour
 
     // Indicates wether the enemy is facing right if true, or left if false
     public bool right = true;
+    // Distance from the edge that the enemy turns
+    public float distance;
 
     // Controls wether or not the speed boost is applied
     public bool speedBoost = false;
@@ -23,6 +25,8 @@ public class GroundWanderer : MonoBehaviour
     public Transform groundDetection;
 
     private float health;
+    private RaycastHit2D groundInfo;
+    private RaycastHit2D wallInfo;
 
 
     // Start is called before the first frame update
@@ -47,6 +51,20 @@ public class GroundWanderer : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(-speed, 0.0f);
+        }
+        groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
+        if(groundInfo.collider == false)
+        {
+            if (right)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                right = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                right = true;
+            }
         }
     }
 }
