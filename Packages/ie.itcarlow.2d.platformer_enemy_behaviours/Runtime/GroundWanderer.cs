@@ -26,6 +26,7 @@ public class GroundWanderer : MonoBehaviour
 
     private float health;
     private RaycastHit2D groundInfo;
+    private RaycastHit2D wallInfo;
 
 
     // Start is called before the first frame update
@@ -55,9 +56,15 @@ public class GroundWanderer : MonoBehaviour
         if(groundInfo.collider == false)
         {
             if (right)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
                 right = false;
+            }
             else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 right = true;
+            }
         }
     }
 }
