@@ -32,6 +32,7 @@ public class GroundWanderer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
     }
 
@@ -52,8 +53,10 @@ public class GroundWanderer : MonoBehaviour
         {
             rb.velocity = new Vector2(-speed, 0.0f);
         }
-        groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
-        if(groundInfo.collider == false)
+
+        // Edge Detection
+        groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down);
+        if(groundInfo.collider == null)
         {
             if (right)
             {
@@ -61,6 +64,28 @@ public class GroundWanderer : MonoBehaviour
                 right = false;
             }
             else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                right = true;
+            }
+        }
+
+        // Right Wall Detection
+        wallInfo = Physics2D.Raycast(groundDetection.position, Vector2.right, distance);
+        if (wallInfo.collider != null)
+        {
+            if (right)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                right = false;
+            }
+        }
+
+        // Left Wall Detection
+        wallInfo = Physics2D.Raycast(groundDetection.position, Vector2.left, distance);
+        if (wallInfo.collider != null)
+        {
+            if (!right)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 right = true;
