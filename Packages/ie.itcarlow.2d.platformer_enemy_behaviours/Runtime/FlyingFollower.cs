@@ -25,7 +25,7 @@ public class FlyingFollower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
     }
 
