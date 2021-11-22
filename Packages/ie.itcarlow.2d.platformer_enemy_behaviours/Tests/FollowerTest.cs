@@ -47,6 +47,14 @@ namespace Tests
             Assert.AreNotEqual(Enemy.GetComponent<FlyingFollower>().invincible, initialstate);
         }
 
-        
+        [UnityTest]
+        public IEnumerator TakeDamage()
+        {
+            float initialHealth = Enemy.GetComponent<FlyingFollower>().getHealth();
+            Enemy.GetComponent<FlyingFollower>().invincible = false;
+            Enemy.GetComponent<FlyingFollower>().damage(2);
+            yield return new WaitForSeconds(0.1f);
+            Assert.Less(Enemy.GetComponent<FlyingFollower>().getHealth(), initialHealth);
+        }
     }
 }
