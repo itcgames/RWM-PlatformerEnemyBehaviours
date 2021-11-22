@@ -16,33 +16,33 @@ namespace Tests
         public void SetUp()
         {
             SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
-            Player = GameObject.FindGameObjectWithTag("Player");
-            Enemy = GameObject.FindGameObjectWithTag("Follower");
         }
 
         [TearDown]
         public void Teardown()
         {
-            Object.Destroy(Player);
-            Object.Destroy(Enemy);
             SceneManager.UnloadSceneAsync("TestScene");
         }
 
         [UnityTest]
         public IEnumerator StartPhaseTest()
         {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
             float initialHealth = Enemy.GetComponent<FlyingFollower>().getHealth();
             Enemy.GetComponent<FlyingFollower>().invincible = true;
             Enemy.GetComponent<FlyingFollower>().damage(2);
             yield return new WaitForSeconds(0.1f);
-            Assert.Equals(Enemy.GetComponent<FlyingFollower>().getHealth(), initialHealth);
+            Assert.AreEqual(Enemy.GetComponent<FlyingFollower>().getHealth(), initialHealth);
         }
 
         [UnityTest]
         public IEnumerator StateChange()
         {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
             bool initialstate = Enemy.GetComponent<FlyingFollower>().invincible;
-            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 2, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 2, Enemy.GetComponent<Rigidbody2D>().position.y - 5);
             yield return new WaitForSeconds(0.5f);
             Assert.AreNotEqual(Enemy.GetComponent<FlyingFollower>().invincible, initialstate);
         }
@@ -50,6 +50,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator TakeDamage()
         {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
             float initialHealth = Enemy.GetComponent<FlyingFollower>().getHealth();
             Enemy.GetComponent<FlyingFollower>().invincible = false;
             Enemy.GetComponent<FlyingFollower>().damage(2);
