@@ -58,5 +58,53 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             Assert.Less(Enemy.GetComponent<FlyingFollower>().getHealth(), initialHealth);
         }
+
+        [UnityTest]
+        public IEnumerator MoveLeft()
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 10, Enemy.GetComponent<Rigidbody2D>().position.y);
+            Enemy.GetComponent<FlyingFollower>().invincible = false;
+            yield return new WaitForSeconds(1.0f);
+            Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos.x);
+        }
+
+        [UnityTest]
+        public IEnumerator MoveRight()
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x + 10, Enemy.GetComponent<Rigidbody2D>().position.y);
+            Enemy.GetComponent<FlyingFollower>().invincible = false;
+            yield return new WaitForSeconds(1.0f);
+            Assert.Greater(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos.x);
+        }
+
+        [UnityTest]
+        public IEnumerator MoveDown()
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
+            Enemy.GetComponent<FlyingFollower>().invincible = false;
+            yield return new WaitForSeconds(1.0f);
+            Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.y, initialPos.y);
+        }
+
+        [UnityTest]
+        public IEnumerator MoveUp()
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x, Enemy.GetComponent<Rigidbody2D>().position.y + 10);
+            Enemy.GetComponent<FlyingFollower>().invincible = false;
+            yield return new WaitForSeconds(1.0f);
+            Assert.Greater(Enemy.GetComponent<Rigidbody2D>().position.y, initialPos.y);
+        }
     }
 }
