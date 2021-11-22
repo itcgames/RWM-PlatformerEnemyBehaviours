@@ -65,7 +65,7 @@ namespace Tests
             Player = GameObject.FindGameObjectWithTag("Player");
             Enemy = GameObject.FindGameObjectWithTag("Follower");
             Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
-            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 3, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 10, Enemy.GetComponent<Rigidbody2D>().position.y);
             Enemy.GetComponent<FlyingFollower>().invincible = false;
             yield return new WaitForSeconds(1.0f);
             Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos.x);
@@ -77,7 +77,7 @@ namespace Tests
             Player = GameObject.FindGameObjectWithTag("Player");
             Enemy = GameObject.FindGameObjectWithTag("Follower");
             Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
-            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x + 3, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x + 10, Enemy.GetComponent<Rigidbody2D>().position.y);
             Enemy.GetComponent<FlyingFollower>().invincible = false;
             yield return new WaitForSeconds(1.0f);
             Assert.Greater(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos.x);
@@ -89,7 +89,7 @@ namespace Tests
             Player = GameObject.FindGameObjectWithTag("Player");
             Enemy = GameObject.FindGameObjectWithTag("Follower");
             Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
-            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 3, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
             Enemy.GetComponent<FlyingFollower>().invincible = false;
             yield return new WaitForSeconds(1.0f);
             Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.y, initialPos.y);
@@ -101,7 +101,7 @@ namespace Tests
             Player = GameObject.FindGameObjectWithTag("Player");
             Enemy = GameObject.FindGameObjectWithTag("Follower");
             Vector2 initialPos = Enemy.GetComponent<Rigidbody2D>().position;
-            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 3, Enemy.GetComponent<Rigidbody2D>().position.y + 10);
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x, Enemy.GetComponent<Rigidbody2D>().position.y + 10);
             Enemy.GetComponent<FlyingFollower>().invincible = false;
             yield return new WaitForSeconds(1.0f);
             Assert.Greater(Enemy.GetComponent<Rigidbody2D>().position.y, initialPos.y);
