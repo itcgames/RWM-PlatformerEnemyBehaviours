@@ -38,6 +38,15 @@ namespace Tests
             Assert.Equals(Enemy.GetComponent<FlyingFollower>().getHealth(), initialHealth);
         }
 
+        [UnityTest]
+        public IEnumerator StateChange()
+        {
+            bool initialstate = Enemy.GetComponent<FlyingFollower>().invincible;
+            Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 2, Enemy.GetComponent<Rigidbody2D>().position.y - 10);
+            yield return new WaitForSeconds(0.5f);
+            Assert.AreNotEqual(Enemy.GetComponent<FlyingFollower>().invincible, initialstate);
+        }
+
         
     }
 }

@@ -32,14 +32,18 @@ public class FlyingFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (invincible && Vector2.Distance(player.GetComponent<Rigidbody2D>().position, rb.position) < stateDist)
+        {
+            invincible = false;
+        }
     }
 
     public void damage(float t_damage)
     {
-        if(!invincible)
+        if (!invincible)
         {
             health -= t_damage;
-            if(health <= 0.0f)
+            if (health <= 0.0f)
             {
                 Destroy(this.gameObject);
             }
