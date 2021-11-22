@@ -16,21 +16,19 @@ namespace Tests
         public void SetUp()
         {
             SceneManager.LoadScene("TestScene", LoadSceneMode.Single);
-            Player = GameObject.FindGameObjectWithTag("Player");
-            Enemy = GameObject.FindGameObjectWithTag("Follower");
         }
 
         [TearDown]
         public void Teardown()
         {
-            Object.Destroy(Player);
-            Object.Destroy(Enemy);
             SceneManager.UnloadSceneAsync("TestScene");
         }
 
         [UnityTest]
         public IEnumerator StartPhaseTest()
         {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
             float initialHealth = Enemy.GetComponent<FlyingFollower>().getHealth();
             Enemy.GetComponent<FlyingFollower>().invincible = true;
             Enemy.GetComponent<FlyingFollower>().damage(2);
