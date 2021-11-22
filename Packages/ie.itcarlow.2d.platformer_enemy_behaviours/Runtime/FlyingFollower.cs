@@ -36,6 +36,26 @@ public class FlyingFollower : MonoBehaviour
         {
             invincible = false;
         }
+        else if (!invincible)
+        {
+            if (rb.position.x < player.GetComponent<Rigidbody2D>().position.x)
+            {
+                rb.velocity = new Vector2(speed, 0.0f);
+            }
+            else if (rb.position.x > player.GetComponent<Rigidbody2D>().position.x)
+            {
+                rb.velocity = new Vector2(-speed, 0.0f);
+            }
+
+            if (rb.position.y < player.GetComponent<Rigidbody2D>().position.y)
+            {
+                rb.velocity = new Vector2(0.0f, speed);
+            }
+            else if (rb.position.y > player.GetComponent<Rigidbody2D>().position.y)
+            {
+                rb.velocity = new Vector2(0.0f, -speed);
+            }
+        }
     }
 
     public void damage(float t_damage)
