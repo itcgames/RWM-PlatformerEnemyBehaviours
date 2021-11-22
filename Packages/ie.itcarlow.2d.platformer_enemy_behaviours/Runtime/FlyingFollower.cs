@@ -40,20 +40,20 @@ public class FlyingFollower : MonoBehaviour
         {
             if (rb.position.x < player.GetComponent<Rigidbody2D>().position.x)
             {
-                rb.velocity = new Vector2(speed, 0.0f);
+                rb.velocity = new Vector2(speed, rb.velocity.y);
             }
             else if (rb.position.x > player.GetComponent<Rigidbody2D>().position.x)
             {
-                rb.velocity = new Vector2(-speed, 0.0f);
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
 
             if (rb.position.y < player.GetComponent<Rigidbody2D>().position.y)
             {
-                rb.velocity = new Vector2(0.0f, speed);
+                rb.velocity = new Vector2(rb.velocity.x, speed);
             }
             else if (rb.position.y > player.GetComponent<Rigidbody2D>().position.y)
             {
-                rb.velocity = new Vector2(0.0f, -speed);
+                rb.velocity = new Vector2(rb.velocity.x, -speed);
             }
         }
     }
