@@ -92,4 +92,18 @@ public class GroundWanderer : MonoBehaviour
             }
         }
     }
+
+    public void damage(float t_damage)
+    {
+        health -= t_damage;
+        if (health <= 0.0f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
 }
