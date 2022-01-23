@@ -25,6 +25,7 @@ public class GroundWanderer : MonoBehaviour
     public Transform groundDetection;
 
     private float health;
+    private bool boostApplied = false;
     private RaycastHit2D groundInfo;
     private RaycastHit2D wallInfo;
 
@@ -34,6 +35,10 @@ public class GroundWanderer : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
+        if(!right)
+        {
+            transform.eulerAngles = new Vector3(0, -180, 0);
+        }
     }
 
     // Update is called once per frame
@@ -99,6 +104,10 @@ public class GroundWanderer : MonoBehaviour
         if (health <= 0.0f)
         {
             Destroy(this.gameObject);
+        }
+        if(speedBoost && health <= maxHealth / 2 && !boostApplied)
+        {
+            speed *= boostedSpeedFactor;
         }
     }
 

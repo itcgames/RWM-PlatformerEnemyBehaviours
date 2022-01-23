@@ -942,11 +942,11 @@ GameObject:
   - component: {fileID: 2133048391}
   - component: {fileID: 2133048390}
   - component: {fileID: 2133048389}
-  - component: {fileID: 2133048388}
   - component: {fileID: 2133048393}
+  - component: {fileID: 2133048388}
   m_Layer: 0
   m_Name: Ground Wanderer
-  m_TagString: Follower
+  m_TagString: GroundWanderer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
