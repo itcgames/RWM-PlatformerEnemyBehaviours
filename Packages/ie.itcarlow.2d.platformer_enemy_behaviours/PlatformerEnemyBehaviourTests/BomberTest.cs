@@ -44,5 +44,15 @@ namespace Tests
             yield return new WaitForSeconds(0.5f);
             Assert.IsNotNull(Enemy.transform.GetChild(0));
         }
+
+        [UnityTest]
+        public IEnumerator BombCarry()
+        {
+
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
+            Vector2 initialPos = Enemy.transform.GetChild(0).position;
+            yield return new WaitForSeconds(0.5f);
+            Assert.Less(Enemy.transform.GetChild(0).position.x, initialPos.x);
+        }
     }
 }
