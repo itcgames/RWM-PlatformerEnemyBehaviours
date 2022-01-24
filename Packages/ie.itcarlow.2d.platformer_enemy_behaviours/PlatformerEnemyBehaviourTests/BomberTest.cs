@@ -12,7 +12,7 @@ namespace Tests
         private GameObject Player;
         private GameObject Enemy;
         private GameObject bomb;
-        private GameObject shrapnel;
+        private GameObject[] shrapnel;
 
         [SetUp]
         public void SetUp()
@@ -63,6 +63,17 @@ namespace Tests
             Vector2 initialPos = Enemy.transform.GetChild(0).position;
             yield return new WaitForSeconds(2.0f);
             Assert.Less(Enemy.transform.GetChild(0).position.y, initialPos.y);
+        }
+
+        [UnityTest]
+        public IEnumerator BombExplosion()
+        {
+
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
+            Enemy.GetComponent<Rigidbody2D>().position = new Vector2(5, 5);
+            yield return new WaitForSeconds(1.5f);
+            shrapnel = GameObject.FindGameObjectsWithTag("Shrapnel");
+            Assert.IsNotNull(shrapnel);
         }
     }
 }
