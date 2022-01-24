@@ -35,5 +35,14 @@ namespace Tests
             yield return new WaitForSeconds(0.5f);
             Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos.x);
         }
+
+        [UnityTest]
+        public IEnumerator BombSpawn()
+        {
+
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
+            yield return new WaitForSeconds(0.5f);
+            Assert.IsNotNull(Enemy.transform.GetChild(0));
+        }
     }
 }
