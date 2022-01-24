@@ -84,5 +84,15 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             Assert.Less(Enemy.GetComponent<Bomber>().getHealth(), initialHealth);
         }
+
+        [UnityTest]
+        public IEnumerator BombTakeDamage()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
+            float initialHealth = Enemy.GetComponentInChildren<Bomb>().getHealth();
+            Enemy.GetComponentInChildren<Bomb>().Damage(0.5f);
+            yield return new WaitForSeconds(0.1f);
+            Assert.Less(Enemy.GetComponentInChildren<Bomb>().getHealth(), initialHealth);
+        }
     }
 }
