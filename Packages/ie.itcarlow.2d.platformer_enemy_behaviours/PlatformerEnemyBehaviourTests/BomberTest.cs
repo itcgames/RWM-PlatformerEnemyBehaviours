@@ -58,7 +58,6 @@ namespace Tests
         [UnityTest]
         public IEnumerator BombDrop()
         {
-
             Enemy = GameObject.FindGameObjectWithTag("Bomber");
             Vector2 initialPos = Enemy.transform.GetChild(0).position;
             yield return new WaitForSeconds(2.0f);
@@ -74,6 +73,16 @@ namespace Tests
             yield return new WaitForSeconds(1.5f);
             shrapnel = GameObject.FindGameObjectsWithTag("Shrapnel");
             Assert.IsNotNull(shrapnel);
+        }
+
+        [UnityTest]
+        public IEnumerator BomberTakeDamage()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
+            float initialHealth = Enemy.GetComponent<Bomber>().getHealth();
+            Enemy.GetComponent<Bomber>().Damage(2);
+            yield return new WaitForSeconds(0.1f);
+            Assert.Less(Enemy.GetComponent<Bomber>().getHealth(), initialHealth);
         }
     }
 }
